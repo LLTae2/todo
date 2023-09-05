@@ -1,0 +1,110 @@
+/* styles.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  width: 350px;
+  margin-top: 20px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* .todo-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+}
+
+.checkbox {
+  position: absolute;
+  right: 10px;
+} */
+/* styles.css */
+/* 기존 스타일은 유지하고 아래에 새로운 스타일을 추가합니다 */
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.checkbox {
+  position: absolute;
+  right: 80px;
+}
+.deletebox {
+  position: absolute;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #999; /* 완료된 아이템 텍스트의 색상 변경 */
+}
+/* styles.css */
+
+/* 기존 스타일 유지 */
+
+.history-box {
+  width: 350px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.history-action {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.history-items {
+  margin-left: 20px;
+}
+
+.history-item {
+  margin-top: 5px;
+}
+
+h2 {
+  width: 350px;
+  text-align: center;
+}
