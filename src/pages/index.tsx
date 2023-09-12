@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import HistoryItem from "../components/HistoryItem";
 import TodoItem from "@/components/TodoItem";
+import useDidMountEffect from "@/hooks/useDidMountEffect";
 
 interface TodoIte {
   content: string;
@@ -22,6 +23,10 @@ export default function Home() {
 
   const { register, handleSubmit, reset } = useForm<{ newItem: string }>();
 
+  useDidMountEffect(() => {
+    addToHistory("Data Updated!", list);
+  }, [list]);
+
   // Todo 아이템을 생성하는 함수
   const handleCreateItem: SubmitHandler<{ newItem: string }> = (data) => {
     if (!!data.newItem) {
@@ -31,9 +36,6 @@ export default function Home() {
       // Todo 아이템 목록 업데이트
       setList(updatedList);
 
-      // 히스토리 엔트리 추가
-      addToHistory(`아이템 "${data.newItem}"을(를) 생성했습니다.`, updatedList);
-
       // 입력값 초기화
       reset();
     }
@@ -41,13 +43,9 @@ export default function Home() {
 
   const handleDeleteItem = (index: number) => {
     if (list[index]) {
-      const deletedItem = list[index].content;
       const updatedList = [...list];
       updatedList.splice(index, 1);
       setList(updatedList);
-
-      // 히스토리에 삭제 작업을 추가합니다.
-      addToHistory(`아이템 "${deletedItem}"을(를) 삭제했습니다.`, updatedList);
     }
   };
 
@@ -62,8 +60,6 @@ export default function Home() {
     setHistory((prevHistory) => [newHistoryEntry, ...prevHistory]);
   };
 
-  // 나머지 코드 (삭제, 완료 여부 토글 등) 생략
-
   return (
     <div className="container">
       <div className="flex-container">
@@ -74,7 +70,6 @@ export default function Home() {
             <button
               onClick={() => {
                 setList([]);
-                addToHistory("모든 아이템을 삭제했습니다.", []);
               }}
             >
               모두 삭제
